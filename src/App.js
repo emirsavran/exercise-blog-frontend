@@ -1,6 +1,6 @@
 import React from 'react';
 import { CssBaseline, Container } from '@material-ui/core';
-import PostListItem from './components/PostListItem';
+import PostList from './components/PostList';
 import './App.css';
 
 function App() {
@@ -8,12 +8,7 @@ function App() {
     <>
       <CssBaseline />
       <Container maxWidth="md" className="App">
-        <PostListItem
-          id="ed42308e-594c-4e18-b77c-f777f2688b32"
-          date="2004-11-16"
-          title="Eli Vance"
-          excerpt="As seen on his sweater, Eli is presumably a graduate of Harvard University."
-        />
+        <PostList />
       </Container>
     </>
   );
