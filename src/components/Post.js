@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
@@ -11,6 +12,12 @@ const useStyles = makeStyles({
     margin: 10,
   },
 });
+
+const homepageButton = (
+  <Button size="large" variant="outlined" color="primary" component={Link} to="/">
+    Homepage
+  </Button>
+);
 
 export default function Post() {
   const { id } = useParams();
@@ -30,11 +37,12 @@ export default function Post() {
 
   if (posts.error) {
     return (
-      <Box>
+      <>
+        {homepageButton}
         <Typography color="error">
           Something went wrong.
         </Typography>
-      </Box>
+      </>
     );
   }
 
@@ -50,9 +58,7 @@ export default function Post() {
 
   return (
     <>
-      <Button size="large" variant="outlined" color="primary" component={Link} to="/">
-        Homepage
-      </Button>
+      {homepageButton}
       <Card variant="outlined" className={classes.card}>
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -63,9 +69,7 @@ export default function Post() {
               {date}
             </Typography>
           </Box>
-          <Typography variant="body1" component="p">
-            {content}
-          </Typography>
+          <Typography variant="body1" component="div" dangerouslySetInnerHTML={{ __html: content }} />
         </CardContent>
       </Card>
     </>
