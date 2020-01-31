@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button, Box, Card, CardActions, CardContent, makeStyles, Typography,
 } from '@material-ui/core';
@@ -10,7 +11,6 @@ const useStyles = makeStyles({
   },
 });
 
-// use id for router
 function PostListItem({
   id, title, date, excerpt,
 }) {
@@ -32,7 +32,9 @@ function PostListItem({
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="large">Read More</Button>
+        <Button size="large" component={Link} to={`/posts/${id}`}>
+          Read More
+        </Button>
       </CardActions>
     </Card>
   );
