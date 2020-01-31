@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 
 // use id for router
-function BlogListItem({
+function PostListItem({
   id, title, date, excerpt,
 }) {
   return (
@@ -30,11 +30,11 @@ function BlogListItem({
   );
 }
 
-BlogListItem.propTypes = {
+PostListItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
 };
 
-export default memo(BlogListItem);
+export default memo(PostListItem);
