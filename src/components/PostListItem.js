@@ -1,15 +1,23 @@
 import React, { memo } from 'react';
 import {
-  Button, Box, Card, CardActions, CardContent, Typography,
+  Button, Box, Card, CardActions, CardContent, makeStyles, Typography,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
+
+const useStyles = makeStyles({
+  card: {
+    margin: 10,
+  },
+});
 
 // use id for router
 function PostListItem({
   id, title, date, excerpt,
 }) {
+  const classes = useStyles();
+
   return (
-    <Card variant="outlined">
+    <Card variant="outlined" className={classes.card}>
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Typography color="textPrimary" variant="h4" component="h3" gutterBottom>
