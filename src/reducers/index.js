@@ -6,7 +6,7 @@ const initialState = {
   postsById: {},
   allIds: [],
   loading: false,
-  error: null,
+  error: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,7 +16,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        errors: null,
+        error: false,
       };
     case FETCH_POSTS_SUCCESS: {
       const postsById = {};

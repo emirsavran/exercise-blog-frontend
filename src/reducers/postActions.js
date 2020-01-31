@@ -11,7 +11,26 @@ export const fetchPostsSuccess = (posts) => ({
   payload: { posts },
 });
 
-export const fetchPostsFailure = (error) => ({
+export const fetchPostsFailure = () => ({
   type: FETCH_POSTS_FAILURE,
-  payload: { error },
 });
+
+export function fetchPosts() {
+  return async (dispatch) => {
+    dispatch(fetchPostsBegin());
+
+    try {
+      const response = await fetch('http://localhost:3001/posts');
+
+      if (!response.ok) {
+        // fetch doesn't throw any error for HTTP 404 etc.
+        throw new Error();
+      }
+
+      const posts = await response.json();
+      dispatch(fetchPostsSuccess(posts));
+    } catch {
+      dispatch(fetchPostsFailure());
+    }
+  };
+}
