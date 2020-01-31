@@ -15,12 +15,19 @@ export const fetchPostsFailure = () => ({
   type: FETCH_POSTS_FAILURE,
 });
 
-export function fetchPosts() {
+export function fetchPosts(id = null) {
   return async (dispatch) => {
     dispatch(fetchPostsBegin());
 
     try {
-      const response = await fetch('http://localhost:3001/posts');
+      let url = 'http://localhost:3001/posts';
+
+      // if id exists, then fetch only one
+      if (id) {
+        url += `/${id}`;
+      }
+
+      const response = await fetch(url);
 
       if (!response.ok) {
         // fetch doesn't throw any error for HTTP 404 etc.
@@ -28,7 +35,7 @@ export function fetchPosts() {
       }
 
       const posts = await response.json();
-      dispatch(fetchPostsSuccess(posts));
+      dispatch(fetchPostsSuccess(Array.isArray(posts) ? posts : [posts]));
     } catch {
       dispatch(fetchPostsFailure());
     }
