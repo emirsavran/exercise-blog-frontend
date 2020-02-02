@@ -22,11 +22,9 @@ export default function PostList() {
 
   if (posts.error) {
     return (
-      <Box>
-        <Typography color="error">
-          Something went wrong.
-        </Typography>
-      </Box>
+      <Typography color="error">
+        Something went wrong.
+      </Typography>
     );
   }
 
