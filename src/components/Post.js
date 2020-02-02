@@ -2,16 +2,11 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
-  Button, Box, Card, CardContent, CircularProgress, makeStyles, Typography,
+  Button, Box, CircularProgress, Typography,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
+import Card from './Card';
 import { fetchPosts } from '../reducers/postActions';
-
-const useStyles = makeStyles({
-  card: {
-    margin: 10,
-  },
-});
 
 const homepageButton = (
   <Button size="large" variant="outlined" color="primary" component={Link} to="/">
@@ -21,7 +16,6 @@ const homepageButton = (
 
 export default function Post() {
   const { id } = useParams();
-  const classes = useStyles();
   const dispatch = useDispatch();
   const posts = useSelector((state) => state);
   const post = posts.postsById[id];
@@ -59,19 +53,12 @@ export default function Post() {
   return (
     <>
       {homepageButton}
-      <Card variant="outlined" className={classes.card}>
-        <CardContent>
-          <Box display="flex" justifyContent="space-between" alignItems="center">
-            <Typography color="textPrimary" variant="h4" component="h3" gutterBottom>
-              {title}
-            </Typography>
-            <Typography color="textSecondary" variant="subtitle2" component="span" gutterBottom>
-              {date}
-            </Typography>
-          </Box>
-          <Typography variant="body1" component="div" dangerouslySetInnerHTML={{ __html: content }} />
-        </CardContent>
-      </Card>
+      <Card
+        title={title}
+        date={date}
+        content={content}
+        dangerouslySetInnerHTML
+      />
     </>
   );
 }
